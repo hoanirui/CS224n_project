@@ -8,7 +8,7 @@
   train, val or test.
 """
 
-import cPickle
+import pickle as cPickle
 import os
 import numpy as np
 
