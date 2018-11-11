@@ -6,7 +6,7 @@ Main Modifications from this hoanirui repository:
 
 (2) Updated deprecated functions in tensorflow
 
-(3) Added missing files from the original project
+(3) Added missing files from the original project (create_numpy_params.py etc.)
 
 
 ********
