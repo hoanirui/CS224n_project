@@ -5,7 +5,7 @@
 """
 
 import numpy as np
-import cPickle
+import pickle as cPickle
 import os
 from utilities import log
 
@@ -14,7 +14,7 @@ data_dir = "coco/data/"
 word_vec_dim = 300
 
 # load the vocabulary from disk:
-vocabulary = cPickle.load(open(os.path.join(data_dir, "vocabulary")))
+vocabulary = cPickle.load(open(os.path.join(data_dir, "vocabulary"), "rb"))
 vocab_size = len(vocabulary)
 
 # read all words and their corresponding pretrained word vec from file:
@@ -39,7 +39,7 @@ with open(os.path.join(captions_dir, "glove.6B.300d.txt")) as file:
 embeddings_matrix = np.zeros((vocab_size, word_vec_dim))
 for vocab_index, word in enumerate(vocabulary):
     if vocab_index % 1000 == 0:
-        print vocab_index
+        print(vocab_index)
         log(str(vocab_index))
 
     if word not in ["<SOS>", "<UNK>", "<EOS>"]: # (the special tokens are initialized with zero vectors)
@@ -48,6 +48,13 @@ for vocab_index, word in enumerate(vocabulary):
         # convert into a numpy array:
         word_vector = np.array(word_vector)
         # convert everything to floats:
+        word_vector = word_vector.astype(float)
+        # add to the matrix:
+        embeddings_matrix[vocab_index, :] = word_vector
+
+# save the embeddings_matrix to disk:
+cPickle.dump(embeddings_matrix,
+        open(os.path.join(data_dir, "embeddings_matrix"), "wb"))
         word_vector = word_vector.astype(float)
         # add to the matrix:
         embeddings_matrix[vocab_index, :] = word_vector
