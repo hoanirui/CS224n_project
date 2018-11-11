@@ -1,5 +1,11 @@
 # CS224n_project
 
+# Main Modifications from this repository: 
+# (1) Changed to Python 3.x from Python 2.x, including updated deprecated functions
+# (2) Updated deprecated functions in tensorflow
+# (3) Added missing files from the original project
+
+
 Demo: http://www.fregu856.com/image_captioning  
 Poster: https://goo.gl/1DMQVE  
 Report: https://goo.gl/PzgRf5  
